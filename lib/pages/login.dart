@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/work.dart';
+import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/pages/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginSCreen extends StatefulWidget {
   LoginSCreen({super.key});
@@ -20,9 +22,9 @@ class _LoginSCreenState extends State<LoginSCreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         title: Text(" Flutter App"),
+
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.867),
 
@@ -30,9 +32,7 @@ class _LoginSCreenState extends State<LoginSCreen> {
         shadowColor: Color.fromARGB(255, 255, 0, 0),
         elevation: 220,
       ),
-      body: 
-      
-      Form(
+      body: Form(
         key: formkey,
         child: Center(
           child: Container(
@@ -61,6 +61,8 @@ class _LoginSCreenState extends State<LoginSCreen> {
                       }),
                 ),
                 const SizedBox(height: 20),
+
+                ///password section starts///
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextFormField(
@@ -110,7 +112,7 @@ class _LoginSCreenState extends State<LoginSCreen> {
     );
   }
 
-  void checkLogin(BuildContext ctx) {
+  void checkLogin(BuildContext ctx) async {
     final _username = _usernameController.text;
     //    print(_username);
     final _password = _passwordcontroller.text;
@@ -118,8 +120,14 @@ class _LoginSCreenState extends State<LoginSCreen> {
 
     if (_username == _password) {
       print('ready');
+      final _sharedprfrs = await SharedPreferences.getInstance();
+      await _sharedprfrs.setBool(SAVE_KEY_NAME, true);
+
+      //here to add sharedprefrnce
+
+      //hello
       Navigator.of(ctx)
-          .pushReplacement(MaterialPageRoute(builder: (ctx1) => screenwork()));
+          .pushReplacement(MaterialPageRoute(builder: (ctx1) => screenhome()));
     } else {
       print(" username or  passowrd not match");
       showDialog(

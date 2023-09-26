@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/welcome.dart';
+import 'package:flutter_application_1/pages/splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
+  const SAVE_KEY_NAME ='userloggedin';
 
 void main(){
-
+  SharedPreferences.getInstance();
   runApp(Loginsample());
 }
 
@@ -20,8 +21,9 @@ class _LoginsampleState extends State<Loginsample> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'login',
-      home: screenwelcome(),
+      home: screensplash(),
       debugShowCheckedModeBanner: false,
     );
   }
-}
+
+} 

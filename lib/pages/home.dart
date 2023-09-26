@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login.dart';
 
-class screenwork extends StatelessWidget {
-  const screenwork({Key? key});
+class screenhome extends StatelessWidget {
+  const screenhome({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class screenwork extends StatelessWidget {
         title: Text('Home'),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(
+            Navigator.pop(//pop because it goes back to the previous page
               context,
               MaterialPageRoute(
                 builder: (context) =>LoginSCreen(),

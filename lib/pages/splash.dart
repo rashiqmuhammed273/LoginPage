@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/pages/home.dart';
 import 'package:flutter_application_1/pages/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
-class screenwelcome extends StatefulWidget {
-  const screenwelcome ({super.key});
+class screensplash extends StatefulWidget {
+  const screensplash ({super.key});
 
   @override
-  State<screenwelcome> createState() => _screenwelcomestate();
+  State<screensplash> createState() => _screensplashstate();
 }
 
-class _screenwelcomestate extends State<screenwelcome> {
+class _screensplashstate extends State<screensplash> {
 
 //initstate
   @override
@@ -52,4 +55,15 @@ class _screenwelcomestate extends State<screenwelcome> {
       ),
     );
   }
+      Future<void>checkUserloggedin() async{
+      final _sharedprfrs=await SharedPreferences.getInstance();
+      final _UserloggedIn=_sharedprfrs.getBool(SAVE_KEY_NAME);
+      if(_UserloggedIn==null ||_UserloggedIn==false){
+
+        gotologin();
+      } else{
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx1)=>screenhome()));
+      }
+
+    }
 }
